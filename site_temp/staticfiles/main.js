@@ -16,31 +16,27 @@ class Product {
     this.counter = 0
   }
 }
-let cat = new Array();
-let arr = new Array();
 
-cat.push(new Category('Pizza', 1, './pngs/1_cat_src.png'))
-cat.push(new Category('Burgers', 2, './pngs/2_cat_src.png'))
-cat.push(new Category('Potato', 3, './pngs/3_cat_src.png'))
-// cat.push(new Category('Fashisti', 4))
-// cat.push(new Category('Cringe', 5))
-// cat.push(new Category('Cringe', 6))
-// cat.push(new Category('Cringe', 7))
-// cat.push(new Category('Cringe', 8))
+let cat = new Array()
+let arr = new Array()
 
-arr.push(new Product(1100,'Hawaii', 1, 1, './pngs/1_src.png'))
-arr.push(new Product(1159,'Kansas', 2, 1, './pngs/2_src.png'))
-arr.push(new Product(1199,'Texas', 3, 1, './pngs/3_src.png'))
-arr.push(new Product(1185,'California', 4, 1, './pngs/4_src.png'))
-arr.push(new Product(1159,'Kansas', 5, 1, './pngs/5_src.png'))
-arr.push(new Product(1150,'Idaho', 6, 1, './pngs/6_src.png'))
-arr.push(new Product(140,'CheeseBurger', 7, 2, './pngs/7_src.png'))
-arr.push(new Product(499,'McChicken', 8, 2, './pngs/8_src.png'))
-arr.push(new Product(299,'Backon', 9, 2, './pngs/9_src.png'))
-arr.push(new Product(230,'Classic', 10, 2, './pngs/10_src.png'))
-arr.push(new Product(135,'McMuffin', 11, 2, './pngs/11_src.png'))
-arr.push(new Product(199,'Frie', 12, 3, './pngs/12_src.png'))
-arr.push(new Product(249,'Village', 13, 3, './pngs/13_src.png'))
+cat.push(new Category('Pizza', 1, pathToImgCat1))
+cat.push(new Category('Burgers', 2, pathToImgCat2))
+cat.push(new Category('Potato', 3, pathToImgCat3))
+
+arr.push(new Product(1100,'Hawaii', 1, 1, pathToImg1))
+arr.push(new Product(1159,'Kansas', 2, 1, pathToImg2))
+arr.push(new Product(1199,'Texas', 3, 1, pathToImg3))
+arr.push(new Product(1185,'California', 4, 1, pathToImg4))
+arr.push(new Product(1159,'Kansas', 5, 1, pathToImg5))
+arr.push(new Product(1150,'Idaho', 6, 1, pathToImg6))
+arr.push(new Product(140,'CheeseBurger', 7, 2, pathToImg7))
+arr.push(new Product(499,'McChicken', 8, 2, pathToImg8))
+arr.push(new Product(299,'Backon', 9, 2, pathToImg9))
+arr.push(new Product(230,'Classic', 10, 2, pathToImg10))
+arr.push(new Product(135,'McMuffin', 11, 2, pathToImg11))
+arr.push(new Product(199,'Frie', 12, 3, pathToImg12))
+arr.push(new Product(249,'Village', 13, 3, pathToImg13))
 // arr.push(new Product(1100,'Hawaii', 7, 1))
 // arr.push(new Product(1099,'Wisconsin', 8, 1))
 // arr.push(new Product(3.44,'Frie', 3, 2))
@@ -318,7 +314,7 @@ function pizdik(categotyid){
   title_css.innerText = cat[categotyid-1].name
   // back_butt_css.innerText = 'B'
   var back_img = document.createElement('img')
-  back_img.src = './pngs/3.png'
+  back_img.src = backImg
   back_img.className = 'back_img'
   back_butt_css.appendChild(back_img)
 

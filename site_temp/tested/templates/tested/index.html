@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    {% load static %}
     <meta charset="utf-8">
     <title>SHOP</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css"/>
   </head>
   <body>
     <!-- <h1>hello</h1> -->
@@ -15,6 +15,28 @@
         View order
       </div>
     </div>
-    <script src="main.js"></script>
+    <script>
+      var pathToImgCat1 = '{% static "pngs/1_cat_src.png" %}'
+      var pathToImgCat2 = '{% static "pngs/2_cat_src.png" %}'
+      var pathToImgCat3 = '{% static "pngs/3_cat_src.png" %}'
+
+      var pathToImg1 = '{% static "pngs/1_src.png" %}'
+      var pathToImg2 = '{% static "pngs/2_src.png" %}'
+      var pathToImg3 = '{% static "pngs/3_src.png" %}'
+      var pathToImg4 = '{% static "pngs/4_src.png" %}'
+      var pathToImg5 = '{% static "pngs/5_src.png" %}'
+      var pathToImg6 = '{% static "pngs/6_src.png" %}'
+      var pathToImg7 = '{% static "pngs/7_src.png" %}'
+      var pathToImg8 = '{% static "pngs/8_src.png" %}'
+      var pathToImg9 = '{% static "pngs/9_src.png" %}'
+      var pathToImg10 = '{% static "pngs/10_src.png" %}'
+      var pathToImg11 = '{% static "pngs/11_src.png" %}'
+      var pathToImg12 = '{% static "pngs/12_src.png" %}'
+      var pathToImg13 = '{% static "pngs/13_src.png" %}'
+      var backImg = '{% static "pngs/3.png" %}'
+    </script>
+    <script src="{% static 'main.js' %}">
+
+    </script>
   </body>
 </html>

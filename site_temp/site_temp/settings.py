@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-qq&efz=&oi$*jx&4c*4+rh%+d#q@&7rj6x1f2zu-4yp#h!fj=i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.137.1','127.0.0.1']
+RUNSERVERPLUS_SERVER_ADDRESS_PORT = '192.168.137.1:80'
+
+ALLOWED_HOSTS = ['192.168.137.1','127.0.0.1', '192.168.0.109', 'localhost']
 
 
 # Application definition
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tested'
+    'tested',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +122,11 @@ USE_TZ = True
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+#     '/var/www/practice/static/',
+# )
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles")]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

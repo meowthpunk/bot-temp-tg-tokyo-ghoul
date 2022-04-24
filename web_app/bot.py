@@ -1,59 +1,40 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils.executor import set_webhook
-from aiohttp import web
-
-from web_app import routes as webapp_routes
 import logging
+from aiogram import Bot, Dispatcher, executor, types
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types.web_app_info import WebAppInfo
 
-logging.basicConfig(level=logging.DEBUG)
-
-BOT_TOKEN = "BOT_TOKEN"
-WEBHOOK_HOST = "yourdomen.com"
-WEBHOOK_PATH = "/webhook"
-WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
-WEBAPP_HOST = "0.0.0.0"
-WEBAPP_PORT = 8080
-
-
-async def on_startup(dp: Dispatcher):
-    await dp.bot.set_webhook(WEBHOOK_URL)
+# Объект бота
+bot = Bot(token="5388724168:AAGck_2xlwnIr4ZH9GyQLsfwEBDS4NBKL1k", parse_mode=types.ParseMode.HTML)
+# Диспетчер для бота
+dp = Dispatcher(bot)
+# Включаем логирование, чтобы не пропустить важные сообщения
+logging.basicConfig(level=logging.INFO)
 
 
-async def on_shutdown(dp: Dispatcher):
-    await dp.bot.delete_webhook()
+# Хэндлер на команду /test1
+@dp.message_handler(commands="test1")
+async def cmd_test1(message: types.Message):
+    await message.reply("Test 1")
+# Хэндлер на команду /test2
+async def cmd_test2(message: types.Message):
+    await message.reply("Test 2")
+
+# Где-то в другом месте...
 
 
+@dp.message_handler(commands="inline_url")
+async def cmd_inline_url(message: types.Message):
+    buttons = [
+        types.InlineKeyboardButton(text="ОФОРМИТЬ ЗАКАЗ", url="https://mastergroosha.github.io/telegram-tutorial-2/buttons/"),
+    ]
+    keyboard = types.InlineKeyboardMarkup(row_width=1)
+    keyboard.add(*buttons)
+    await message.answer("Кнопки-ссылки", reply_markup=keyboard)
+
+dp.register_message_handler(cmd_inline_url, commands="test2")
+
+@dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
-    markup = types.InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                types.InlineKeyboardButton(
-                    text="Web app",
-                    web_app=types.WebAppInfo(url=f"{WEBHOOK_HOST}/test_webapp"),
-                )
-            ]
-        ]
-    )
-    await message.answer("Click it!", reply_markup=markup)
+    await message.answer("https://192.168.137.1:80/", reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton(text="test", web_app = WebAppInfo(url="https://192.168.137.1:80/"))))
 
-
-def main():
-    bot = Bot(BOT_TOKEN, parse_mode="HTML")
-    dp = Dispatcher(bot)
-    app = web.Application()
-    app["bot"] = bot
-    app.add_routes(webapp_routes)
-    set_webhook(
-        dispatcher=dp,
-        webhook_path=WEBHOOK_PATH,
-        skip_updates=True,
-        on_startup=on_startup,
-        on_shutdown=on_shutdown,
-        web_app=app,
-    )
-    dp.register_message_handler(cmd_start, commands=["start"])
-    web.run_app(app, port=WEBAPP_PORT, host=WEBAPP_HOST)
-
-
-if __name__ == "__main__":
-    main()
+executor.start_polling(dp, skip_updates=True)
