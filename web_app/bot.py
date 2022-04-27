@@ -2,6 +2,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.types.web_app_info import WebAppInfo
+from aiogram.types import MenuButton
 
 # Объект бота
 bot = Bot(token="5388724168:AAGck_2xlwnIr4ZH9GyQLsfwEBDS4NBKL1k", parse_mode=types.ParseMode.HTML)
@@ -35,6 +36,11 @@ dp.register_message_handler(cmd_inline_url, commands="test2")
 
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
-    await message.answer("https://192.168.137.1:80/", reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton(text="test", web_app = WebAppInfo(url="https://192.168.137.1:80/"))))
+    await message.answer("Let's start!😀", reply_markup=InlineKeyboardMarkup().add(InlineKeyboardButton(text="Order food", web_app = WebAppInfo(url="https://hub.delivery/"))))
+    menu_button = MenuButton()
+    print(message.chat.id)
+    print(menu_button)
 
+
+# on_startup(print('pizda'))
 executor.start_polling(dp, skip_updates=True)

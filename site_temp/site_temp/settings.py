@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tested',
     'django_extensions',
+    'shop',
+    'students',
+    'aldjemy',
 ]
 
 MIDDLEWARE = [
